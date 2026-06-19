@@ -13,20 +13,21 @@ const listarCardapio = (req, res) => {
 };
 
 const buscaPorId = (req, res) => {
-    const id = parseInt(req.perams.id)
+    const id = parseInt(req.params.id)
     const itemEncontrado = cardapioOficial.find((item) => item.id === id)
 
-    return res.status(200).json({
-        erro: false,
-        sucesso: "Item foi encontrado, e esse valor é ",
-        item: itemEncontrado
-    })
+    
     if (!itemEncontrado) {
         return res.status(400).json({
             erro: "Erro 400!",
             sucesso: false
         })
     }
+    return res.status(200).json({
+        erro: false,
+        sucesso: "Item foi encontrado, e esse valor é ",
+        item: itemEncontrado
+    })
 }
 
 module.exports = { listarCardapio, buscaPorId };
